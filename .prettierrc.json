@@ -10,5 +10,15 @@
   "singleQuote": false,
   "tabWidth": 2,
   "endOfLine": "auto",
-  "trailingComma": "es5"
+  "trailingComma": "es5",
+  "overrides": [
+    {
+      "files": ["./packages/mobile/**/*"],
+      "options": {
+        "plugins": ["prettier-plugin-tailwindcss"],
+        "tailwindConfig": "./packages/mobile/tailwind.config.js",
+        "tailwindFunctions": ["tva"]
+      }
+    }
+  ]
 }
