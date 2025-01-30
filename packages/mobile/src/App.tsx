@@ -1,3 +1,5 @@
+import "./global.css";
+
 // Import third-party dependencies
 import { useAsyncStorageDevTools } from "@dev-plugins/async-storage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -7,38 +9,32 @@ import { isRunningInExpoGo } from "expo";
 import { isDevelopmentBuild, registerDevMenuItems } from "expo-dev-client";
 import { useFonts } from "expo-font";
 import { setNotificationHandler } from "expo-notifications";
-import { hideAsync } from "expo-splash-screen";
 import { preventAutoHideAsync } from "expo-splash-screen";
-// TODO: Switch away from native-base https://nativebase.io/blogs/road-ahead-with-gluestack-ui
 import { isEmergencyLaunch } from "expo-updates";
 import { channel, isEmbeddedLaunch, manifest, updateId } from "expo-updates";
-import type { ICustomTheme } from "native-base";
-import { NativeBaseProvider } from "native-base";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { Alert, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
+import BoldoniFlfBoldFont from "@/assets/fonts/bodoni-flf-font/Bodoni-FLF-Bold.ttf";
+import BoldoniFlfBoldItalicFont from "@/assets/fonts/bodoni-flf-font/Bodoni-FLF-Bold-Italic.ttf";
+import BoldoniFlfItalicFont from "@/assets/fonts/bodoni-flf-font/Bodoni-FLF-Italic.ttf";
+import BoldoniFlfRomanFont from "@/assets/fonts/bodoni-flf-font/Bodoni-FLF-Roman.ttf";
+import OpenSansCondensedBoldFont from "@/assets/fonts/opensans-condensed/OpenSans-Condensed-Bold.ttf";
+import OpenSansCondensedLightFont from "@/assets/fonts/opensans-condensed/OpenSans-Condensed-Light.ttf";
+import OpenSansCondensedLightItalicFont from "@/assets/fonts/opensans-condensed/OpenSans-Condensed-Light-Italic.ttf";
+import { overrideApiBaseUrl } from "@/common/apiUrl";
 import ErrorBoundary from "@/common/components/ErrorBoundary";
 import { useUpdateChecker } from "@/common/hooks/useUpdateChecker";
 import { Logger } from "@/common/logger/Logger";
-import { universalCatch } from "@/common/logging";
 import { showMessage } from "@/common/util/alertUtils";
+import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import { AuthStateProvider } from "@/context/auth";
 import { DeviceDataProvider } from "@/context/device";
 import { LoadingWrapper } from "@/context/loading";
 import { UrqlContext } from "@/context/urql";
+import { FilledNavigationContainer } from "@/navigation/NavigationContainer";
 import { navigationIntegration } from "@/navigation/routingInstrumentation";
-
-import BoldoniFlfBoldFont from "./assets/fonts/bodoni-flf-font/Bodoni-FLF-Bold.ttf";
-import BoldoniFlfBoldItalicFont from "./assets/fonts/bodoni-flf-font/Bodoni-FLF-Bold-Italic.ttf";
-import BoldoniFlfItalicFont from "./assets/fonts/bodoni-flf-font/Bodoni-FLF-Italic.ttf";
-import BoldoniFlfRomanFont from "./assets/fonts/bodoni-flf-font/Bodoni-FLF-Roman.ttf";
-import OpenSansCondensedBoldFont from "./assets/fonts/opensans-condensed/OpenSans-Condensed-Bold.ttf";
-import OpenSansCondensedLightFont from "./assets/fonts/opensans-condensed/OpenSans-Condensed-Light.ttf";
-import OpenSansCondensedLightItalicFont from "./assets/fonts/opensans-condensed/OpenSans-Condensed-Light-Italic.ttf";
-import { overrideApiBaseUrl } from "./src/common/apiUrl";
-import { FilledNavigationContainer } from "./src/navigation/NavigationContainer";
-import { getCustomTheme } from "./src/theme";
 
 const metadata = "metadata" in manifest ? manifest.metadata : undefined;
 const extra = "extra" in manifest ? manifest.extra : undefined;
@@ -148,7 +144,6 @@ setNotificationHandler({
  */
 const App = Sentry.wrap(() => {
   const isOfflineInternal = useRef(false);
-  const [theme, setTheme] = useState<ICustomTheme | undefined>(undefined);
 
   useAsyncStorageDevTools();
 
@@ -167,14 +162,6 @@ const App = Sentry.wrap(() => {
       Logger.error("Error loading fonts", { error });
     }
   }, [error]);
-
-  useEffect(() => {
-    if (fontsLoaded) {
-      hideAsync().catch(universalCatch);
-      // Have to get the theme AFTER fonts are loaded
-      setTheme(getCustomTheme());
-    }
-  }, [fontsLoaded]);
 
   useEffect(
     () =>
@@ -195,12 +182,8 @@ const App = Sentry.wrap(() => {
   useUpdateChecker();
 
   return (
-    fontsLoaded &&
-    theme && (
-      <NativeBaseProvider
-        config={{ strictMode: __DEV__ ? "error" : "off" }}
-        theme={theme}
-      >
+    fontsLoaded && (
+      <GluestackUIProvider>
         <ErrorBoundary>
           <UrqlContext>
             <LoadingWrapper>
@@ -218,7 +201,7 @@ const App = Sentry.wrap(() => {
             </LoadingWrapper>
           </UrqlContext>
         </ErrorBoundary>
-      </NativeBaseProvider>
+      </GluestackUIProvider>
     )
   );
 });

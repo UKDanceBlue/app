@@ -10,7 +10,9 @@
       "@/context/*": ["./src/context/*"],
       "@/navigation/*": ["./src/navigation/*"],
       "@/theme/*": ["./src/theme/*"],
-      "@/common-types/*": ["./src/types/*"]
+      "@/common-types/*": ["./src/types/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/tailwind.config": ["./tailwind.config.js"]
     },
     "noUncheckedIndexedAccess": false,
     "exactOptionalPropertyTypes": false,
@@ -43,14 +45,11 @@
   },
   "extends": ["../../tsconfig.json", "./node_modules/expo/tsconfig.base.json"],
   "include": [
-    "index.js",
-    "App.tsx",
-    "global.d.ts",
     "src",
     "assets",
     "config-plugins",
     "test-helpers",
-
+    "tailwind.config.js",
     "app.config.ts",
     "babel.config.cjs",
     "metro.config.cjs"

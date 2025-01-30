@@ -3,12 +3,16 @@
 const { withSentryConfig } = require("@sentry/react-native/metro");
 // @ts-expect-error - CommonJS
 const { getDefaultConfig } = require("expo/metro-config");
+// @ts-expect-error - CommonJS
+const { withNativeWind } = require("nativewind/metro");
 
 // Find the project and workspace directories
 // eslint-disable-next-line no-undef
 const projectRoot = __dirname;
 
-const config = withSentryConfig(getDefaultConfig(projectRoot));
+const config = withNativeWind(withSentryConfig(getDefaultConfig(projectRoot)), {
+  input: "./src/global.css",
+});
 
 /** @type {Partial<Record<string, string>>} */
 const ALIASES = {
