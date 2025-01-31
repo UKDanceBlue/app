@@ -1,6 +1,9 @@
-import { Center, Spinner, ZStack } from "native-base";
 import type { ReactNode } from "react";
 import { useCallback, useReducer } from "react";
+
+import { Center } from "@/components/ui/center";
+import { Portal } from "@/components/ui/portal";
+import { Spinner } from "@/components/ui/spinner";
 
 import { LoadingContext } from "./useLoading";
 
@@ -30,14 +33,12 @@ export const LoadingWrapper = ({ children }: { children: ReactNode }) => {
 
   return (
     <LoadingContext.Provider value={[loadingReasons, setLoading]}>
-      <ZStack height="full">
-        {children}
-        {Object.values(loadingReasons).some(Boolean) && (
-          <Center width="full" height="full">
-            <Spinner size="lg" color="#0000ff" />
-          </Center>
-        )}
-      </ZStack>
+      <Portal isOpen={Object.values(loadingReasons).some(Boolean)}>
+        <Center className="h-full w-full">
+          <Spinner className="text-primary-500" size="large" />
+        </Center>
+      </Portal>
+      {children}
     </LoadingContext.Provider>
   );
 };
