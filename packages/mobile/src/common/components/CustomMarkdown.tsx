@@ -6,9 +6,9 @@ import { canOpenURL, openURL } from "expo-linking";
 
 import { Logger } from "@/common/logger/Logger";
 
-import { rules as defaultRules } from "../../markdownRules";
+import { rules as defaultRules } from "../markdownRules";
 
-const NativeBaseMarkdown = ({
+const CustomMarkdown = ({
   children,
   debugPrintTree,
   mergeStyle,
@@ -48,4 +48,4 @@ const NativeBaseMarkdown = ({
   );
 };
 
-export default NativeBaseMarkdown;
+export default CustomMarkdown;

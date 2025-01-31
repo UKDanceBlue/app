@@ -10,6 +10,7 @@ const { withNativeWind } = require("nativewind/metro");
 // eslint-disable-next-line no-undef
 const projectRoot = __dirname;
 
+// @ts-expect-error - CommonJS
 const config = withNativeWind(withSentryConfig(getDefaultConfig(projectRoot)), {
   input: "./src/global.css",
 });

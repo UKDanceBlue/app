@@ -1,4 +1,6 @@
-import { Text, View } from "native-base";
+import { View } from "react-native";
+
+import { Text } from "@/components/ui/text";
 
 const Breadcrumbs = ({
   pageName,
@@ -14,9 +16,8 @@ const Breadcrumbs = ({
       return (
         <View>
           <Text
-            fontSize="lg"
-            fontFamily="mono"
-            marginLeft={"3"}
+            className="ml-3 text-lg"
+            style={{ fontFamily: "monospace" }}
           >{`< ${previousPage}`}</Text>
         </View>
       );
@@ -28,12 +29,8 @@ const Breadcrumbs = ({
   return (
     <View>
       <Text
-        bg={"primary.700"}
-        color={"secondary.400"}
-        textAlign="center"
-        fontSize="lg"
-        fontFamily="body"
         bold
+        className="bg-primary-700 text-center text-lg color-primary-400"
       >
         {pageName}
       </Text>

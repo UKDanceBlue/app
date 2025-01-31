@@ -6,9 +6,7 @@ import {
   useWindowDimensions,
 } from "react-native";
 
-import ImageView, {
-  ImageViewFragment,
-} from "@/common/components/ImageView/ImageView";
+import ImageView, { ImageViewFragment } from "@/common/components/ImageView";
 import NativeBaseMarkdown from "@/common/components/NativeBaseMarkdown";
 import { TriviaCrack } from "@/common/marathonComponents/TriviaCrack";
 import type { FragmentOf } from "@/graphql/index";

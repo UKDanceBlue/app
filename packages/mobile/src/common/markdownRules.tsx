@@ -4,9 +4,16 @@ import {
   renderRules,
 } from "@ukdanceblue/react-native-markdown-display";
 import { Platform } from "expo-modules-core";
-import { Box, Divider, Heading, Link, Row, Text, VStack } from "native-base";
 import type { DimensionValue, FlexAlignType, TextStyle } from "react-native";
 import { StyleSheet } from "react-native";
+
+import { Box } from "@/components/ui/box";
+import { Divider } from "@/components/ui/divider";
+import { Heading } from "@/components/ui/heading";
+import { HStack } from "@/components/ui/hstack";
+import { Link, LinkText } from "@/components/ui/link";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
 
 import { CustomImageRenderer } from "./components/CustomImageRenderer";
 
@@ -132,32 +139,32 @@ export const rules: typeof renderRules = {
 
   // Headings
   heading1: (node, children, _parent, styles: MarkdownRuleStyles) => (
-    <Heading size="2xl" key={node.key} style={styles.heading1} selectable>
+    <Heading size="3xl" key={node.key} style={styles.heading1} selectable>
       {children}
     </Heading>
   ),
   heading2: (node, children, _parent, styles: MarkdownRuleStyles) => (
-    <Heading size="xl" key={node.key} style={styles.heading2} selectable>
+    <Heading size="2xl" key={node.key} style={styles.heading2} selectable>
       {children}
     </Heading>
   ),
   heading3: (node, children, _parent, styles: MarkdownRuleStyles) => (
-    <Heading size="lg" key={node.key} style={styles.heading3} selectable>
+    <Heading size="xl" key={node.key} style={styles.heading3} selectable>
       {children}
     </Heading>
   ),
   heading4: (node, children, _parent, styles: MarkdownRuleStyles) => (
-    <Heading size="md" key={node.key} style={styles.heading4} selectable>
+    <Heading size="lg" key={node.key} style={styles.heading4} selectable>
       {children}
     </Heading>
   ),
   heading5: (node, children, _parent, styles: MarkdownRuleStyles) => (
-    <Heading size="sm" key={node.key} style={styles.heading5} selectable>
+    <Heading size="md" key={node.key} style={styles.heading5} selectable>
       {children}
     </Heading>
   ),
   heading6: (node, children, _parent, styles: MarkdownRuleStyles) => (
-    <Heading size="xs" key={node.key} style={styles.heading6} selectable>
+    <Heading size="sm" key={node.key} style={styles.heading6} selectable>
       {children}
     </Heading>
   ),
@@ -167,7 +174,7 @@ export const rules: typeof renderRules = {
     <Divider
       key={node.key}
       style={styles._VIEW_SAFE_hr}
-      thickness={styles._VIEW_SAFE_hr?.height}
+      // thickness={styles._VIEW_SAFE_hr?.height}
     />
   ),
 
@@ -367,9 +374,9 @@ export const rules: typeof renderRules = {
     </VStack>
   ),
   th: (node, children, _parent, styles: MarkdownRuleStyles) => (
-    <Row key={node.key} style={styles._VIEW_SAFE_th}>
+    <HStack key={node.key} style={styles._VIEW_SAFE_th}>
       {children}
-    </Row>
+    </HStack>
   ),
   tr: (node, children, parent, styles: MarkdownRuleStyles) => {
     const siblings = parent[0]?.children ?? [];
@@ -388,9 +395,9 @@ export const rules: typeof renderRules = {
           : styles._VIEW_SAFE_tr;
 
       return (
-        <Row key={node.key} style={styleForRow}>
+        <HStack key={node.key} style={styleForRow}>
           {children}
-        </Row>
+        </HStack>
       );
     }
   },
@@ -407,7 +414,7 @@ export const rules: typeof renderRules = {
       style={styles._VIEW_SAFE_link}
       href={String(node.attributes?.href)}
     >
-      <Text color={"blue.600"}>{children}</Text>
+      <LinkText>{children}</LinkText>
     </Link>
   ),
   blocklink: (

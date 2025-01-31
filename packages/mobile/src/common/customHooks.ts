@@ -3,10 +3,6 @@ import type {
   NetInfoUnknownState,
 } from "@react-native-community/netinfo";
 import NetInfo, { NetInfoStateType } from "@react-native-community/netinfo";
-import {
-  useColorModeValue as useColorModeValueNativeBase,
-  useTheme,
-} from "native-base";
 import { useEffect, useState } from "react";
 
 export function useNetworkStatus() {
@@ -27,20 +23,3 @@ export function useNetworkStatus() {
 
   return [connectionInfo, isLoaded] as const;
 }
-
-export const useColorModeValue = <A, B>(lightValue: A, darkValue: B): A | B =>
-  useColorModeValueNativeBase(lightValue, darkValue) as A | B;
-
-/**
- * Only use for non-NativeBase components, NativeBase components should just use something like "color.123"
- */
-export const useThemeColors = () => {
-  return useTheme().colors;
-};
-
-/**
- * Only use for non-NativeBase components, NativeBase components should just use the font family name in a string like "body"
- */
-export const useThemeFonts = () => {
-  return useTheme().fonts;
-};

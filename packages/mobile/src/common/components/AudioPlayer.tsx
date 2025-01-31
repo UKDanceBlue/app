@@ -2,22 +2,24 @@
 import { FontAwesome5 } from "@expo/vector-icons";
 import type { Audio } from "expo-av";
 import { canOpenURL, openURL } from "expo-linking";
-import {
-  AspectRatio,
-  Box,
-  HStack,
-  IconButton,
-  Link,
-  Slider,
-  Spinner,
-  Text,
-  useTheme,
-  VStack,
-} from "native-base";
 import { useEffect, useRef, useState } from "react";
 
-import { universalCatch } from "../../logging";
-import { showMessage } from "../../util/alertUtils";
+import { Box } from "@/components/ui/box";
+import { Button, ButtonIcon } from "@/components/ui/button";
+import { HStack } from "@/components/ui/hstack";
+import { Link } from "@/components/ui/link";
+import {
+  Slider,
+  SliderFilledTrack,
+  SliderThumb,
+  SliderTrack,
+} from "@/components/ui/slider";
+import { Spinner } from "@/components/ui/spinner";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+
+import { universalCatch } from "../logging";
+import { showMessage } from "../util/alertUtils";
 
 /**
  * A row-based component showing a target name, their rank (if applicable), and their points
@@ -33,7 +35,6 @@ const AudioPlayer = ({
   title?: string;
   titleLink?: string;
 }) => {
-  const { colors } = useTheme();
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState<number | undefined>();
   const [currentTime, setCurrentTime] = useState(0);
@@ -128,25 +129,13 @@ const AudioPlayer = ({
   }
 
   return (
-    <VStack
-      flex={1}
-      _light={{ backgroundColor: colors.coolGray[400] }}
-      _dark={{ backgroundColor: colors.coolGray[900] }}
-      m={"2"}
-      px={"2"}
-      py={"1"}
-      borderRadius={5}
-      shadow="6"
-      height="full"
-    >
+    <VStack className="mx-2 my-1 flex-1 rounded bg-gray-300 p-2 shadow-md dark:bg-gray-700">
       {title &&
         (titleLink == null ? (
-          <Text flex={2} textAlign={"center"}>
-            {title}
-          </Text>
+          <Text className="flex-2 mx-1 my-1 text-center">{title}</Text>
         ) : (
           <Link
-            flex={2}
+            className="flex-2 mx-1 my-1 text-center"
             onPress={() => {
               canOpenURL(titleLink)
                 .then((canOpen) => canOpen && openURL(titleLink))
@@ -157,46 +146,27 @@ const AudioPlayer = ({
                 })
                 .catch(showMessage);
             }}
-            textAlign={"center"}
           >
             {title}
           </Link>
         ))}
-      <HStack
-        alignItems={"center"}
-        justifyContent={"space-between"}
-        flex={3}
-        _light={{ backgroundColor: colors.coolGray[300] }}
-        _dark={{ backgroundColor: colors.coolGray[700] }}
-        padding={"1"}
-        mx={"1"}
-        my={"1"}
-        borderRadius={5}
-        shadow="3"
-      >
-        <Box width="10%" mr={"1%"}>
+      <HStack className="flex-3 mx-1 my-1 items-center justify-between rounded bg-gray-300 p-1 shadow-md dark:bg-gray-700">
+        <Box className="w-1/10 mr-1%">
           {loading ? (
             <Spinner />
           ) : (
-            <AspectRatio ratio={1}>
-              <IconButton
-                icon={
-                  <FontAwesome5
-                    name={isPlaying ? "pause" : "play"}
-                    size={15}
-                    color={colors.white}
-                  />
-                }
-                padding={0}
-                margin={"1"}
-                onPress={() => setIsPlaying(!isPlaying)}
-                disabled={duration == null}
-              />
-            </AspectRatio>
+            <Button
+              className="p-1"
+              onPress={() => setIsPlaying(!isPlaying)}
+              disabled={duration == null}
+            >
+              <ButtonIcon>
+                <FontAwesome5 name={isPlaying ? "pause" : "play"} size={15} />
+              </ButtonIcon>
+            </Button>
           )}
         </Box>
         <Slider
-          width="68%"
           defaultValue={0}
           value={seekTime}
           minValue={0}
@@ -207,20 +177,14 @@ const AudioPlayer = ({
           onChangeEnd={applySeek}
           isDisabled={duration == null}
           size="sm"
-          colorScheme={currentTime === 0 ? "cyan" : "primary"}
+          className="w-8/10"
         >
-          <Slider.Track>
-            <Slider.FilledTrack />
-          </Slider.Track>
-          <Slider.Thumb />
+          <SliderTrack>
+            <SliderFilledTrack />
+          </SliderTrack>
+          <SliderThumb />
         </Slider>
-        <Text
-          width="20%"
-          fontSize={"2xs"}
-          textAlign={"center"}
-          flexWrap="nowrap"
-          numberOfLines={1}
-        >
+        <Text className="w-1/10 ml-1%" numberOfLines={1}>
           {currentTimeString} / {durationString}
         </Text>
       </HStack>

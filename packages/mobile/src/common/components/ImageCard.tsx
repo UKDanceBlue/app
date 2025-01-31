@@ -1,6 +1,8 @@
+import { Image } from "expo-image";
 import * as WebBrowser from "expo-web-browser";
-import { Box, Image } from "native-base";
 import { PixelRatio, TouchableHighlight } from "react-native";
+
+import { Box } from "@/components/ui/box";
 
 /**
  * A card showing a Sponsor's logo that link's to their website
@@ -21,15 +23,7 @@ const SponsorCard = ({
       underlayColor="#dddddd"
       style={{ flex: 1 }}
     >
-      <Box
-        shadow="6"
-        flex={1}
-        backgroundColor="white"
-        p="1"
-        m="2"
-        borderRadius={6}
-        justifyContent="center"
-      >
+      <Box className="m-2 flex-1 justify-center rounded-lg bg-white p-1 shadow">
         <Image
           source={{
             uri: undefined,
@@ -37,8 +31,7 @@ const SponsorCard = ({
             height: PixelRatio.getPixelSizeForLayoutSize(50),
           }}
           alt={name}
-          flex={1}
-          style={{ resizeMode: "contain" }}
+          style={{ resizeMode: "contain", flex: 1 }}
         />
       </Box>
     </TouchableHighlight>
