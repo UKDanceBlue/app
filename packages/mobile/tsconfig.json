@@ -4,33 +4,15 @@
     "module": "preserve",
     "moduleResolution": "bundler",
     "paths": {
-      "@/assets/*": [
-        "./assets/*"
-      ],
-      "@/graphql/*": [
-        "./src/graphql/*"
-      ],
-      "@/common/*": [
-        "./src/common/*"
-      ],
-      "@/context/*": [
-        "./src/context/*"
-      ],
-      "@/navigation/*": [
-        "./src/navigation/*"
-      ],
-      "@/theme/*": [
-        "./src/theme/*"
-      ],
-      "@/common-types/*": [
-        "./src/types/*"
-      ],
-      "@/components/*": [
-        "./src/components/*"
-      ],
-      "@/tailwind.config": [
-        "./tailwind.config.js"
-      ]
+      "@/assets/*": ["./assets/*"],
+      "@/graphql/*": ["./src/graphql/*"],
+      "@/common/*": ["./src/common/*"],
+      "@/context/*": ["./src/context/*"],
+      "@/navigation/*": ["./src/navigation/*"],
+      "@/theme/*": ["./src/theme/*"],
+      "@/common-types/*": ["./src/types/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/tailwind.config": ["./tailwind.config.ts"]
     },
     "noUncheckedIndexedAccess": false,
     "exactOptionalPropertyTypes": false,
@@ -61,16 +43,13 @@
       }
     ]
   },
-  "extends": [
-    "../../tsconfig.json",
-    "./node_modules/expo/tsconfig.base.json"
-  ],
+  "extends": ["../../tsconfig.json", "./node_modules/expo/tsconfig.base.json"],
   "include": [
     "src",
     "assets",
     "config-plugins",
     "test-helpers",
-    "tailwind.config.js",
+    "tailwind.config.ts",
     "app.config.ts",
     "babel.config.cjs",
     "metro.config.cjs",

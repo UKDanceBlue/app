@@ -38,7 +38,7 @@ const SplashLoginScreen = () => {
   return (
     <>
       <StatusBar />
-      <View className={`absolute top-0 z-0 w-screen`}>
+      <View className={`absolute top-0 z-0 h-screen w-screen`}>
         <Image
           source={bgImage}
           alt="Background"
@@ -48,7 +48,7 @@ const SplashLoginScreen = () => {
           }}
         />
       </View>
-      <View className={`absolute bottom-0 z-0 w-screen`}>
+      <View className={`absolute bottom-0 z-0 h-screen w-screen`}>
         <Image
           alt="Welcome Overlay"
           source={
@@ -60,15 +60,15 @@ const SplashLoginScreen = () => {
           }}
         />
       </View>
-      <View className={`mt-15 absolute bottom-5 z-50 w-full`}>
+      <View className={`mt-15 absolute bottom-10 z-50 w-full`}>
         {allowedLoginTypes.includes("ms-oath-linkblue") && (
           <View>
             <Button
               onPress={() => trigger(AuthSource.LinkBlue)}
-              className={`w-${Dimensions.get("window").width - 50} m-5 self-center bg-blue-600 aria-pressed:bg-primary-600 aria-pressed:opacity-60`}
+              className={`m-10 mx-4`}
               size="xl"
             >
-              <ButtonText className="font-body text-center text-xl text-white">
+              <ButtonText className="text-center font-body text-xl ">
                 Login with Linkblue
               </ButtonText>
             </Button>
@@ -78,10 +78,10 @@ const SplashLoginScreen = () => {
           <View>
             <Button
               onPress={() => trigger(AuthSource.Anonymous)}
-              className={`w-${Dimensions.get("window").width - 50} m-5 self-center bg-blue-600 aria-pressed:bg-primary-600 aria-pressed:opacity-60`}
+              className="m-10 mx-4"
               size="xl"
             >
-              <ButtonText className="font-body text-center text-xl text-white">
+              <ButtonText className="text-center font-body text-xl" >
                 Continue as Guest
               </ButtonText>
             </Button>

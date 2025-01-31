@@ -221,6 +221,7 @@ function TabBarComponent({
 
   return (
     <Box
+      className="absolute bottom-0 w-screen"
       style={{
         height: tabBarHeight,
         width: screenWidth,
@@ -233,8 +234,10 @@ function TabBarComponent({
     >
       {!!fancyTab && (
         <BackgroundCutout
-          svgProps={{ width: screenWidth, height: tabBarHeight }}
-          color="#ffffff"
+          width={screenWidth}
+          height={tabBarHeight}
+          className={`absolute bottom-0 m-0 p-0`}
+          color="#f00"
         />
       )}
       <View

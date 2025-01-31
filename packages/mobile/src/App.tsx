@@ -146,6 +146,8 @@ setNotificationHandler({
 const App = Sentry.wrap(() => {
   const isOfflineInternal = useRef(false);
 
+  verifyInstallation();
+
   useAsyncStorageDevTools();
 
   const [fontsLoaded, error] = useFonts({
