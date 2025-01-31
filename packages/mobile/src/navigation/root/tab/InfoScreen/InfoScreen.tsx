@@ -1,6 +1,5 @@
 import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { openURL } from "expo-linking";
-
 import React from "react";
 import {
   PixelRatio,

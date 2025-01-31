@@ -1,6 +1,5 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import type { CameraCapturedPicture } from "expo-camera";
-
 import React, { useRef, useState } from "react";
 import { captureRef } from "react-native-view-shot";
 

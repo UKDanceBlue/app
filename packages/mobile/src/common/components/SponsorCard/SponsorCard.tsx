@@ -1,5 +1,4 @@
 import * as WebBrowser from "expo-web-browser";
-
 import { PixelRatio, StyleSheet, TouchableHighlight } from "react-native";
 
 // This is good, but we need to hold off until we get transparent logos for each sponsor

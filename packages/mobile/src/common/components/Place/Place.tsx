@@ -1,6 +1,5 @@
 // Import third-party dependencies
 import { FontAwesome5 } from "@expo/vector-icons";
-
 import type { ReactElement } from "react";
 import React from "react";
 

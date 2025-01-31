@@ -1,6 +1,5 @@
 // import CountdownView from "@/common/components/CountdownView/CountdownView";
 import type { DateTime } from "luxon";
-
 import { useState } from "react";
 import type { ImageSourcePropType } from "react-native";
 import { ImageBackground, useWindowDimensions } from "react-native";

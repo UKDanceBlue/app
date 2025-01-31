@@ -3,7 +3,6 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { Audio } from "expo-av";
 import { Image } from "expo-image";
 import { openURL } from "expo-linking";
-
 import { useEffect, useState } from "react";
 import React from "react";
 import { PixelRatio, useWindowDimensions } from "react-native";

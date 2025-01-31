@@ -1,6 +1,5 @@
 import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import { CameraView } from "expo-camera";
-
 import { useState } from "react";
 
 import DBMomentsLogo from "@/assets/svgs/DBMomentsLogo";

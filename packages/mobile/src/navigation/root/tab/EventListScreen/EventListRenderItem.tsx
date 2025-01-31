@@ -1,7 +1,6 @@
 import { intervalFromSomething } from "@ukdanceblue/common";
 import { Platform } from "expo-modules-core";
 import { DateTime } from "luxon";
-
 import type { MutableRefObject } from "react";
 import { useCallback, useMemo } from "react";
 import type { ListRenderItem } from "react-native";

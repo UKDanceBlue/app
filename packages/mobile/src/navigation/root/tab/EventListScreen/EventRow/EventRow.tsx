@@ -1,7 +1,6 @@
 import { FontAwesome } from "@expo/vector-icons";
 import type { Interval } from "luxon";
 import { DateTime } from "luxon";
-
 import React from "react";
 import { useMemo } from "react";
 

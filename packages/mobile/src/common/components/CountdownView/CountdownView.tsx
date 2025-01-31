@@ -1,5 +1,4 @@
 import { DateTime, Duration, Interval } from "luxon";
-
 import { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 
