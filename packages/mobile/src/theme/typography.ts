@@ -1,5 +1,3 @@
-import type { Theme } from "native-base";
-
 export const letterSpacings: Partial<Theme["letterSpacings"]> = {
   "xs": "-0.05em",
   "sm": "-0.025em",

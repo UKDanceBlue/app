@@ -20,19 +20,24 @@ const ALIASES = {
   "type-graphql": "type-graphql/shim",
 };
 
+const defaultResolver = config.resolver?.resolveRequest;
 // @ts-expect-error - It is defined by expo/metro-config
 config.resolver /*
 Only ignore the first bit
  */.resolveRequest =
   /** @type {import("metro-resolver").CustomResolver} */
   (context, moduleName, platform) => {
-    // Ensure you call the default resolver.
-    return context.resolveRequest(
-      context,
-      // Use an alias if one exists.
-      ALIASES[moduleName] ?? moduleName,
-      platform
-    );
+    if (Object.keys(ALIASES).includes(moduleName)) {
+      return context.resolveRequest(
+        context,
+        // Use an alias if one exists.
+        ALIASES[moduleName] ?? moduleName,
+        platform
+      );
+    } else {
+      // @ts-ignore
+      return defaultResolver(context, moduleName, platform);
+    }
   };
 
 // @ts-expect-error - It is defined by expo/metro-config

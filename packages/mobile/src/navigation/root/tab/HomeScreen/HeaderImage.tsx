@@ -1,4 +1,5 @@
-import { Image, ZStack } from "native-base";
+import { Image } from "expo-image";
+import { View } from "react-native";
 
 import marathon from "../../../../../assets/screens/home/marathon.jpg";
 
@@ -9,13 +10,16 @@ import marathon from "../../../../../assets/screens/home/marathon.jpg";
  * A header image container used on the home screen
  */
 const HeaderImage = () => (
-  <ZStack height="100%" width="full" m={0}>
+  <View className="h-full w-screen">
     <Image
       source={marathon}
-      size="full"
-      resizeMode="cover"
+      contentFit="cover"
       // blurRadius={10}
       alt="Picture of DB Marathon"
+      style={{
+        width: "100%",
+        height: "100%",
+      }}
     />
     {/* <Box
       style={{ backgroundColor: "#ffffff55" }}
@@ -27,7 +31,7 @@ const HeaderImage = () => (
       resizeMode="contain"
       alt="DanceBlue Logo" />
 */}
-  </ZStack>
+  </View>
 );
 
 export default HeaderImage;

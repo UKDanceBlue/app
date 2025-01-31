@@ -1,4 +1,3 @@
-import { Box, Flex, Text } from "native-base";
 import { FlatList, RefreshControl } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 

@@ -1,6 +1,6 @@
 import type { CameraCapturedPicture } from "expo-camera";
 import { DateTime } from "luxon";
-import { Box, HStack, Image, Text, View } from "native-base";
+
 import type { Ref } from "react";
 import React, { useEffect, useState } from "react";
 import {

@@ -1,6 +1,5 @@
 import { FontAwesome5 } from "@expo/vector-icons";
 import type { Icon as IconType } from "@expo/vector-icons/build/createIconSet";
-import { Icon, Text, View } from "native-base";
 
 import { useThemeColors } from "../../customHooks";
 

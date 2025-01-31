@@ -9,9 +9,10 @@ import { isRunningInExpoGo } from "expo";
 import { isDevelopmentBuild, registerDevMenuItems } from "expo-dev-client";
 import { useFonts } from "expo-font";
 import { setNotificationHandler } from "expo-notifications";
-import { preventAutoHideAsync } from "expo-splash-screen";
+import { hideAsync, preventAutoHideAsync } from "expo-splash-screen";
 import { isEmergencyLaunch } from "expo-updates";
 import { channel, isEmbeddedLaunch, manifest, updateId } from "expo-updates";
+import { verifyInstallation } from "nativewind";
 import React, { useEffect, useRef } from "react";
 import { Alert, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -178,6 +179,12 @@ const App = Sentry.wrap(() => {
       }),
     []
   );
+
+  useEffect(() => {
+    if (fontsLoaded) {
+      hideAsync().catch(console.error);
+    }
+  }, [fontsLoaded]);
 
   useUpdateChecker();
 

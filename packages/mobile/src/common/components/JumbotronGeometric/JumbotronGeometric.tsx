@@ -1,7 +1,9 @@
 import type { Icon as IconType } from "@expo/vector-icons/build/createIconSet";
-import { Box, Icon, Text } from "native-base";
 import type { ImageSourcePropType } from "react-native";
 import { ImageBackground } from "react-native";
+
+import { Box } from "@/components/ui/box";
+import { Text } from "@/components/ui/text";
 
 import { useThemeColors } from "../../customHooks";
 
@@ -104,9 +106,9 @@ const JumbotronGeometric = <
         justifyContent="center"
         flexDirection="column"
       >
-        {icon && (
+        {/* {icon && (
           <Icon flex={1} as={iconType} name={icon} color={iconColor()} />
-        )}
+        )} */}
         {title && (
           <Text
             fontFamily="headingBold"

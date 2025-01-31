@@ -1,5 +1,3 @@
-import type { Theme } from "native-base";
-
 export const colors: Partial<
   Record<keyof Theme["colors"], Record<number, string>>
 > = {

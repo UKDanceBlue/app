@@ -1,4 +1,3 @@
-import { Text, View } from "native-base";
 import { useWindowDimensions } from "react-native";
 
 import { useThemeColors, useThemeFonts } from "../../customHooks";

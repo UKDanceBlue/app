@@ -1,20 +1,9 @@
 import { openURL } from "expo-linking";
 import { isEqual } from "lodash";
 import { DateTime } from "luxon";
-import {
-  Heading,
-  HStack,
-  Pressable,
-  Skeleton,
-  Text,
-  useTheme,
-  View,
-  VStack,
-} from "native-base";
 import { memo } from "react";
 import { useWindowDimensions } from "react-native";
 
-import { useThemeFonts } from "@/common/customHooks";
 import {
   NotificationDeliveryFragment,
   NotificationFragment,

@@ -177,10 +177,19 @@ module.exports = {
         },
       },
       fontFamily: {
-        heading: undefined,
-        body: undefined,
-        mono: undefined,
-        roboto: ["Roboto", "sans-serif"],
+        "mono": ["Roboto Mono", "monospace"],
+        "bodoni": ["Bodoni-FLF-Roman", "serif"],
+        "bodoni-italic": ["Bodoni-FLF-Italic", "serif"],
+        "bodoni-bold": ["Bodoni-FLF-Bold", "serif"],
+        "heading": ["Bodoni-FLF-Bold", "serif"],
+        "bodoni-bold-italic": ["Bodoni-FLF-Bold-Italic", "serif"],
+        "opensans-bold": ["OpenSans-Condensed-Bold", "sans-serif"],
+        "opensans-light-italic": [
+          "OpenSans-Condensed-Light-Italic",
+          "sans-serif",
+        ],
+        "opensans-light": ["OpenSans-Condensed-Light", "sans-serif"],
+        "body": ["OpenSans-Condensed-Light", "sans-serif"],
       },
       fontWeight: {
         extrablack: "950",

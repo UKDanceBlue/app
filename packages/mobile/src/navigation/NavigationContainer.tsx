@@ -8,13 +8,11 @@ import {
   openURL,
 } from "expo-linking";
 import { addNotificationResponseReceivedListener } from "expo-notifications";
-import { useDisclose } from "native-base";
 import { useRef, useState } from "react";
 import React from "react";
 import { StatusBar } from "react-native";
 import type { WebViewSource } from "react-native-webview/lib/WebViewTypes";
 
-import WebpageModal from "../common/components/WebpageModal";
 import { useColorModeValue } from "../common/customHooks";
 import { universalCatch } from "../common/logging";
 import RootScreen from "../navigation/root/RootScreen";
@@ -28,13 +26,15 @@ export const FilledNavigationContainer = () => {
   const navigationRef =
     useRef<NavigationContainerRef<RootStackParamList>>(null);
 
-  const {
-    isOpen: isNotificationWebviewPopupSourceOpen,
-    onClose: onNotificationWebviewPopupSourceClose,
-    onOpen: onNotificationWebviewPopupSourceOpen,
-  } = useDisclose(false);
-  const [notificationWebviewPopupSource, setNotificationWebviewPopupSource] =
-    useState<WebViewSource | null>(null);
+  // const {
+  //   isOpen: isNotificationWebviewPopupSourceOpen,
+  //   onClose: onNotificationWebviewPopupSourceClose,
+  //   onOpen: onNotificationWebviewPopupSourceOpen,
+  // } = useDisclose(false);
+  const [
+    ,
+    /*notificationWebviewPopupSource*/ setNotificationWebviewPopupSource,
+  ] = useState<WebViewSource | null>(null);
 
   return (
     <>
@@ -70,7 +70,7 @@ export const FilledNavigationContainer = () => {
 
                 if (webviewPopup != null) {
                   setNotificationWebviewPopupSource(webviewPopup);
-                  onNotificationWebviewPopupSourceOpen();
+                  // onNotificationWebviewPopupSourceOpen();
                 }
 
                 if (notificationUrl != null) {
@@ -123,11 +123,11 @@ export const FilledNavigationContainer = () => {
           navigationIntegration.registerNavigationContainer(navigationRef);
         }}
       >
-        <WebpageModal
+        {/* <WebpageModal
           isOpen={isNotificationWebviewPopupSourceOpen}
           onClose={onNotificationWebviewPopupSourceClose}
           source={notificationWebviewPopupSource}
-        />
+        /> */}
         <RootScreen />
       </NavigationContainer>
     </>

@@ -7,7 +7,7 @@ import { debugStringify } from "@ukdanceblue/common";
 import { openURL } from "expo-linking";
 import type { ReactNode } from "react";
 import React from "react";
-import { Button, SafeAreaView, ScrollView, Text, View } from "react-native";
+import { Button, SafeAreaView, ScrollView, Text } from "react-native";
 
 import { universalCatch } from "../logging";
 
@@ -22,69 +22,52 @@ function ErrorBoundaryFallback({
 }) {
   const stringifiedError = debugStringify(error);
 
-  if (error) {
-    return (
-      <SafeAreaView>
-        <ScrollView>
-          <Text style={{ fontSize: 20, marginBottom: 15, fontWeight: "bold" }}>
-            {error instanceof Error
-              ? `Something went wrong: ${error.name} - ${error.message}`
-              : "Something went wrong"}
-          </Text>
-          <Text style={{ marginBottom: 15 }}>
-            An error occurred in
-            {isComponentError ? " a component. " : " the app. "}
-            This is likely a bug and will require you to restart the app.
-          </Text>
-          <Button
-            title={"Send Report"}
-            onPress={() =>
-              sendEmail(error, componentStack, stringifiedError).catch(
-                universalCatch
-              )
-            }
-          />
-          {typeof error === "object" && "cause" in error ? (
-            <>
-              <Text style={{ fontSize: 15, fontWeight: "bold" }}>
-                Error Cause:
-              </Text>
-              <Text style={{ marginBottom: 15 }}>
-                {debugStringify(error.cause)}
-              </Text>
-            </>
-          ) : null}
-          <Text style={{ fontSize: 15, fontWeight: "bold" }}>JS stack:</Text>
-          {typeof error === "object" && "stack" in error && (
-            <Text style={{ marginBottom: 15 }}>{String(error.stack)}</Text>
-          )}
-          {componentStack && (
-            <>
-              <Text style={{ fontSize: 15, fontWeight: "bold" }}>
-                Component stack:
-              </Text>
-              <Text style={{ marginBottom: 15 }}>{componentStack}</Text>
-            </>
-          )}
-        </ScrollView>
-      </SafeAreaView>
-    );
-  } else {
-    return (
-      <SafeAreaView>
-        <View>
-          <Text style={{ fontSize: 20, marginBottom: 15 }}>
-            Something went wrong
-          </Text>
-          <Text style={{ marginBottom: 15 }}>
-            An error occurred in the app. This is likely a bug in the app.
-          </Text>
-          <Text style={{ marginBottom: 15 }}>{stringifiedError}</Text>
-          <Text style={{ marginBottom: 15 }}>{componentStack}</Text>
-        </View>
-      </SafeAreaView>
-    );
-  }
+  return (
+    <SafeAreaView>
+      <ScrollView>
+        <Text style={{ fontSize: 20, marginBottom: 15, fontWeight: "bold" }}>
+          {error instanceof Error
+            ? `Something went wrong: ${error.name} - ${error.message}`
+            : "Something went wrong"}
+        </Text>
+        <Text style={{ marginBottom: 15 }}>
+          An error occurred in
+          {isComponentError ? " a component. " : " the app. "}
+          This is likely a bug and will require you to restart the app.
+        </Text>
+        <Button
+          title={"Send Report"}
+          onPress={() =>
+            sendEmail(error, componentStack, stringifiedError).catch(
+              universalCatch
+            )
+          }
+        />
+        {error && typeof error === "object" && "cause" in error ? (
+          <>
+            <Text style={{ fontSize: 15, fontWeight: "bold" }}>
+              Error Cause:
+            </Text>
+            <Text style={{ marginBottom: 15 }}>
+              {debugStringify(error.cause)}
+            </Text>
+          </>
+        ) : null}
+        <Text style={{ fontSize: 15, fontWeight: "bold" }}>JS stack:</Text>
+        {error != null && typeof error === "object" && "stack" in error && (
+          <Text style={{ marginBottom: 15 }}>{String(error.stack)}</Text>
+        )}
+        {componentStack && (
+          <>
+            <Text style={{ fontSize: 15, fontWeight: "bold" }}>
+              Component stack:
+            </Text>
+            <Text style={{ marginBottom: 15 }}>{componentStack}</Text>
+          </>
+        )}
+      </ScrollView>
+    </SafeAreaView>
+  );
 }
 
 async function sendEmail(

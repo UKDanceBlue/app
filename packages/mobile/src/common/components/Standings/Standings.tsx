@@ -1,4 +1,3 @@
-import { Text, View } from "native-base";
 import type { ReactElement } from "react";
 import { useEffect, useState } from "react";
 import React from "react";

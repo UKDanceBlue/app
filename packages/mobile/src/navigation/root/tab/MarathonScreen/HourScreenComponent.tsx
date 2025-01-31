@@ -1,4 +1,3 @@
-import { Heading, ScrollView, Text } from "native-base";
 import { useEffect, useState } from "react";
 import {
   RefreshControl,

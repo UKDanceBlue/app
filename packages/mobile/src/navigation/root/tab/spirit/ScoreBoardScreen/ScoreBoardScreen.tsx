@@ -1,15 +1,6 @@
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { TeamLegacyStatus, TeamType } from "@ukdanceblue/common";
-import {
-  Box,
-  CheckIcon,
-  HStack,
-  Pressable,
-  Select,
-  Text,
-  View,
-} from "native-base";
 import { useMemo, useState } from "react";
 
 import Jumbotron from "@/common/components/Jumbotron";

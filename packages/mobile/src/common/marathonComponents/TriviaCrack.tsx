@@ -1,5 +1,4 @@
 import { TeamType } from "@ukdanceblue/common";
-import { Text, View } from "native-base";
 import { useEffect, useMemo, useState } from "react";
 import { ActivityIndicator } from "react-native";
 import { useQuery } from "urql";

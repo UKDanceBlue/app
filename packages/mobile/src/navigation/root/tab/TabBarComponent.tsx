@@ -7,11 +7,16 @@ import type {
   ParamListBase,
   TabNavigationState,
 } from "@react-navigation/native";
-import { Box, useTheme, View, VStack, ZStack } from "native-base";
 import React from "react";
-import { Text, TouchableOpacity, useWindowDimensions } from "react-native";
+import {
+  Text,
+  TouchableOpacity,
+  useWindowDimensions,
+  View,
+} from "react-native";
 
-import { useColorModeValue, useThemeColors } from "@/common/customHooks";
+import { Box } from "@/components/ui/box";
+import { VStack } from "@/components/ui/vstack";
 import { colors } from "@/theme/colors";
 
 import BackgroundCutout from "../../../../assets/screens/navigation/background-cutout";
@@ -84,7 +89,6 @@ function TabBarIcon({
   iconKey: keyof typeof iconMap;
 }) {
   const navTheme = useReactNavigationTheme();
-  const theme = useTheme();
 
   return (
     <TouchableOpacity
@@ -101,22 +105,13 @@ function TabBarIcon({
         backgroundColor: isMiddle ? colors.primary?.[600] : undefined,
       }}
     >
-      <VStack alignItems="center" justifyContent="center" flex={1}>
+      <VStack>
         {tabBarIcon({
           color: isFocused ? navTheme.colors.primary : navTheme.colors.text,
           size: iconSize,
           iconKey,
         })}
-        {label && (
-          <Text
-            style={{
-              color: isFocused ? navTheme.colors.primary : navTheme.colors.text,
-              fontSize: theme.fontSizes.xs,
-            }}
-          >
-            {label}
-          </Text>
-        )}
+        {label && <Text>{label}</Text>}
       </VStack>
     </TouchableOpacity>
   );
@@ -226,9 +221,9 @@ function TabBarComponent({
 
   return (
     <Box
-      height={tabBarHeight}
-      width={screenWidth}
       style={{
+        height: tabBarHeight,
+        width: screenWidth,
         paddingBottom: insets.bottom,
         paddingLeft: insets.left,
         paddingRight: insets.right,
@@ -236,42 +231,40 @@ function TabBarComponent({
         borderTopWidth: fancyTab ? 0 : 2,
       }}
     >
-      <ZStack>
-        {!!fancyTab && (
-          <BackgroundCutout
-            svgProps={{ width: screenWidth, height: tabBarHeight }}
-            color={tabBarBackgroundColor}
-          />
-        )}
-        <View
-          style={{
-            flexDirection: "row",
-            width: screenWidth,
-            height: tabBarHeight,
-          }}
-        >
-          {state.routes.map((route, index) => {
-            const { options } = descriptors[route.key];
-            return (
-              <TabBarEntry
-                key={route.key}
-                route={route}
-                label={
-                  typeof options.tabBarLabel === "string"
-                    ? options.tabBarLabel
-                    : (options.title ?? route.name)
-                }
-                isFocused={state.index === index}
-                options={options}
-                navigation={navigation}
-                tabBarHeight={tabBarHeight}
-                screenWidth={screenWidth}
-                isFancyTab={route.name === fancyTab}
-              />
-            );
-          })}
-        </View>
-      </ZStack>
+      {!!fancyTab && (
+        <BackgroundCutout
+          svgProps={{ width: screenWidth, height: tabBarHeight }}
+          color="#ffffff"
+        />
+      )}
+      <View
+        style={{
+          flexDirection: "row",
+          width: screenWidth,
+          height: tabBarHeight,
+        }}
+      >
+        {state.routes.map((route, index) => {
+          const { options } = descriptors[route.key];
+          return (
+            <TabBarEntry
+              key={route.key}
+              route={route}
+              label={
+                typeof options.tabBarLabel === "string"
+                  ? options.tabBarLabel
+                  : (options.title ?? route.name)
+              }
+              isFocused={state.index === index}
+              options={options}
+              navigation={navigation}
+              tabBarHeight={tabBarHeight}
+              screenWidth={screenWidth}
+              isFancyTab={route.name === fancyTab}
+            />
+          );
+        })}
+      </View>
     </Box>
   );
 }

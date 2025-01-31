@@ -1,4 +1,3 @@
-import { View } from "native-base";
 import React from "react";
 import { useWindowDimensions } from "react-native";
 import { Circle, Svg, Text } from "react-native-svg";

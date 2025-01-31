@@ -1,7 +1,7 @@
 import { FontAwesome5 } from "@expo/vector-icons";
 import { dateTimeFromSomething } from "@ukdanceblue/common";
 import { DateTime } from "luxon";
-import { Center, Flex, HStack, ScrollView, Text, View } from "native-base";
+
 import { useWindowDimensions } from "react-native";
 import { RefreshControl } from "react-native-gesture-handler";
 

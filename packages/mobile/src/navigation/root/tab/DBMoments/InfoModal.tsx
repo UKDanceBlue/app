@@ -1,5 +1,3 @@
-import { Button, Center, Modal, Text } from "native-base";
-
 export const InfoModal = ({
   setShowModal,
   showModal,

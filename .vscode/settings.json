@@ -55,5 +55,8 @@
   "typescript.preferences.preferTypeOnlyAutoImports": true,
   "tailwindCSS.experimental.classRegex": [
     ["tva\\((([^()]*|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
-  ]
+  ],
+  "tailwindCSS.experimental.configFile": {
+    "packages/mobile/tailwind.config.js": "packages/mobile/**"
+  }
 }

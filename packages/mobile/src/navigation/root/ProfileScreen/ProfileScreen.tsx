@@ -6,23 +6,20 @@ import {
   DbRole,
 } from "@ukdanceblue/common";
 import { openURL } from "expo-linking";
-import {
-  Box,
-  Button,
-  Center,
-  Container,
-  Spinner,
-  Text,
-  theme,
-  VStack,
-} from "native-base";
 import { useMemo } from "react";
 import React from "react";
+import { View } from "react-native";
 
 import { useLogin } from "@/common/auth";
 import JumbotronGeometric from "@/common/components/JumbotronGeometric";
 import { useThemeFonts } from "@/common/customHooks";
 import { universalCatch } from "@/common/logging";
+import { Box } from "@/components/ui/box";
+import { Button } from "@/components/ui/button";
+import { Center } from "@/components/ui/center";
+import { Spinner } from "@/components/ui/spinner";
+import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
 import type { FragmentOf } from "@/graphql/index";
 import { graphql, readFragment } from "@/graphql/index";
 
@@ -121,18 +118,18 @@ const ProfileScreen = ({
       <>
         <JumbotronGeometric title={jumboText()} />
         <VStack flex={0.95} justifyContent="space-between" display="flex">
-          <Container maxWidth="full">
+          <View maxWidth="full">
             <Text
               width="full"
               textAlign="center"
-              fontSize={theme.fontSizes["2xl"]}
+              // fontSize={theme.fontSizes["2xl"]}
             >
               You&apos;re currently logged in as:
             </Text>
             <Text
               width="full"
               textAlign="center"
-              fontSize={theme.fontSizes["2xl"]}
+              // fontSize={theme.fontSizes["2xl"]}
               fontFamily={body}
               color="primary.600"
             >
@@ -144,7 +141,7 @@ const ProfileScreen = ({
                 italic
                 textAlign="center"
                 color="primary.600"
-                fontSize={theme.fontSizes.lg}
+                // fontSize={theme.fontSizes.lg}
                 fontFamily={mono}
               >
                 {committeeString}
@@ -161,7 +158,7 @@ const ProfileScreen = ({
                 Dancer Resources
               </Button>
             </Box>
-          </Container>
+          </View>
           {/* TODO: Implement server-side support for individual totals */}
           {/* {userData.teams.length > 0 &&
             userData.linkblue &&
@@ -185,11 +182,11 @@ const ProfileScreen = ({
                 </Text>
               </Container>
             )} */}
-          <Container maxWidth="full" alignItems="center">
+          <View maxWidth="full" alignItems="center">
             <ProfileFooter
               profileScreenAuthFragment={profileScreenAuthFragment}
             />
-          </Container>
+          </View>
         </VStack>
       </>
     );

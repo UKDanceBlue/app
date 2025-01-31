@@ -1,11 +1,9 @@
-import { Text } from "native-base";
-import { Linking, useWindowDimensions } from "react-native";
+import { Linking } from "react-native";
 
 import { universalCatch } from "@/common/logging";
+import { Text } from "@/components/ui/text";
 
 export function DBHeaderText() {
-  const { width, fontScale } = useWindowDimensions();
-
   return (
     <Text
       onPress={async () => {
@@ -17,12 +15,8 @@ export function DBHeaderText() {
           Linking.openURL("https://www.danceblue.org/").catch(universalCatch);
         }
       }}
-      paddingLeft={Math.round(width * 0.01)}
-      fontSize={30 / fontScale}
-      color="primary.600"
-      fontFamily="bodoni-flf-bold"
+      className="font-bodoni-flf-bold overflow-visible pl-2 text-2xl color-primary-600"
       bold
-      overflow="visible"
     >
       DanceBlue
     </Text>

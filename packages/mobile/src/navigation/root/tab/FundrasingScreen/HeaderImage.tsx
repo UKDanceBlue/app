@@ -1,5 +1,3 @@
-import { Image, ZStack } from "native-base";
-
 import marathon from "../../../../../assets/screens/home/marathon.jpg";
 
 // import dbLogo from "../../../../../assets/logo/big-words.png";

@@ -1,5 +1,5 @@
 import { DateTime } from "luxon";
-import { Text } from "native-base";
+
 import type { ReactElement } from "react";
 import { useMemo, useState } from "react";
 import { View } from "react-native";

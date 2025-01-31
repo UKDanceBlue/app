@@ -1,12 +1,20 @@
 import { AuthSource } from "@ukdanceblue/common";
-import { Button, Center, Image, Text, View, ZStack } from "native-base";
+import { Image } from "expo-image";
 import { useEffect, useState } from "react";
 import React from "react";
 import type { ImageSourcePropType } from "react-native";
-import { ActivityIndicator, Dimensions, StatusBar } from "react-native";
+import {
+  ActivityIndicator,
+  Dimensions,
+  StatusBar,
+  useWindowDimensions,
+  View,
+} from "react-native";
 
 import { useLogin } from "@/common/auth";
 import { useAllowedLoginTypes } from "@/common/hooks/useAllowedLoginTypes";
+import { Button, ButtonText } from "@/components/ui/button";
+import { Center } from "@/components/ui/center";
 
 import { getRandomSplashLoginBackground } from "./SplashLoginBackgrounds";
 
@@ -18,101 +26,73 @@ const SplashLoginScreen = () => {
 
   const loading = allowedLoginTypesLoading || loginLoading;
 
-  const heightOfBackground = Dimensions.get("window").height * 0.6;
-  const heightOfContent = Dimensions.get("window").height * 0.4;
-
   // TODO: FIX INTERVAL
   const [bgImage, setbgImage] = useState(getRandomSplashLoginBackground());
   useEffect(() => {
     const unsub = setInterval(() => {
       setbgImage(getRandomSplashLoginBackground());
-    }, 1000);
+    }, 5000);
     return () => clearInterval(unsub);
   }, []);
 
   return (
     <>
-      <StatusBar hidden />
-      <ZStack>
+      <StatusBar />
+      <View className={`absolute top-0 z-0 w-screen`}>
         <Image
           source={bgImage}
           alt="Background"
-          width={Dimensions.get("window").width}
-          height={heightOfBackground}
-          overflow="hidden"
-          resizeMode="cover"
+          style={{
+            width: "100%",
+            height: "100%",
+          }}
         />
+      </View>
+      <View className={`absolute bottom-0 z-0 w-screen`}>
         <Image
           alt="Welcome Overlay"
           source={
             require("../../../../assets/screens/login-modal/welcome-back-overlay.png") as ImageSourcePropType
           }
-          height={Dimensions.get("window").height}
-          width={Dimensions.get("window").width}
-          resizeMode="cover"
-          zIndex={0}
+          style={{
+            width: "100%",
+            height: "100%",
+          }}
         />
-        <View>
-          <View
-            justifyContent="center"
-            height={heightOfContent}
-            top={heightOfBackground}
-            zIndex={100}
-            position="absolute"
-            width={Dimensions.get("window").width}
-            marginTop={15}
-          >
-            {allowedLoginTypes.includes("ms-oath-linkblue") && (
-              <View>
-                <Button
-                  onPress={() => trigger(AuthSource.LinkBlue)}
-                  width={Dimensions.get("window").width - 50}
-                  backgroundColor="secondary.400"
-                  _pressed={{ backgroundColor: "primary.600" }}
-                  alignSelf="center"
-                  margin={5}
-                >
-                  <Text
-                    color="primary.600"
-                    textAlign="center"
-                    fontFamily="body"
-                    fontSize="xl"
-                  >
-                    Login with Linkblue
-                  </Text>
-                </Button>
-              </View>
-            )}
-
-            {allowedLoginTypes.includes("anonymous") && (
-              <View>
-                <Button
-                  onPress={() => trigger(AuthSource.Anonymous)}
-                  width={Dimensions.get("window").width - 50}
-                  backgroundColor="primary.600"
-                  _pressed={{ backgroundColor: "secondary.400" }}
-                  alignSelf="center"
-                  margin={5}
-                >
-                  <Text
-                    color="#ffffff"
-                    textAlign="center"
-                    fontFamily="body"
-                    fontSize="xl"
-                  >
-                    Continue as Guest
-                  </Text>
-                </Button>
-              </View>
-            )}
+      </View>
+      <View className={`mt-15 absolute bottom-5 z-50 w-full`}>
+        {allowedLoginTypes.includes("ms-oath-linkblue") && (
+          <View>
+            <Button
+              onPress={() => trigger(AuthSource.LinkBlue)}
+              className={`w-${Dimensions.get("window").width - 50} m-5 self-center bg-blue-600 aria-pressed:bg-primary-600 aria-pressed:opacity-60`}
+              size="xl"
+            >
+              <ButtonText className="font-body text-center text-xl text-white">
+                Login with Linkblue
+              </ButtonText>
+            </Button>
           </View>
-          {loading && (
-            <Center position="absolute" width="full" height="full">
-              <ActivityIndicator size="large" />
-            </Center>
-          )}
-        </View>
-      </ZStack>
+        )}
+        {allowedLoginTypes.includes("anonymous") && (
+          <View>
+            <Button
+              onPress={() => trigger(AuthSource.Anonymous)}
+              className={`w-${Dimensions.get("window").width - 50} m-5 self-center bg-blue-600 aria-pressed:bg-primary-600 aria-pressed:opacity-60`}
+              size="xl"
+            >
+              <ButtonText className="font-body text-center text-xl text-white">
+                Continue as Guest
+              </ButtonText>
+            </Button>
+          </View>
+        )}
+      </View>
+      {loading && (
+        <Center className="z-200 absolute left-0 top-0 h-full w-full">
+          <ActivityIndicator size="large" />
+        </Center>
+      )}
     </>
   );
 };

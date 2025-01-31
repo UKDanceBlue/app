@@ -1,4 +1,3 @@
-import { Box, Button, Row, useTheme } from "native-base";
 import type { SectionListRenderItem } from "react-native";
 import { useWindowDimensions } from "react-native";
 import { PanGestureHandler } from "react-native-gesture-handler";

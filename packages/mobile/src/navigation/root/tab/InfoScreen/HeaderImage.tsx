@@ -1,5 +1,3 @@
-import { Image, ZStack } from "native-base";
-
 import CutsForTheClinic from "../../../../../assets/screens/info/Cutsfortheclinic.jpg";
 
 // import dbLogo from "../../../../../assets/logo/big-words.png";

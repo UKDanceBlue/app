@@ -1,5 +1,3 @@
-import type { ComponentTheme, Theme } from "native-base";
-
 // const {
 //   Button: originalButtonTheme,
 //   Text: originalTextTheme,

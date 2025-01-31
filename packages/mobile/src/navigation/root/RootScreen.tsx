@@ -1,6 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { DbRole } from "@ukdanceblue/common";
-import { useTheme } from "native-base";
 import { useEffect, useMemo, useState } from "react";
 import React from "react";
 import { Alert, useWindowDimensions } from "react-native";
@@ -9,10 +8,10 @@ import { useQuery } from "urql";
 import ErrorBoundary, {
   withErrorBoundary,
 } from "@/common/components/ErrorBoundary";
+import { useColorModeValue } from "@/common/customHooks";
 import { Logger } from "@/common/logger/Logger";
 import { graphql, readFragment } from "@/graphql/index";
 
-import { useColorModeValue } from "../../common/customHooks";
 import { useLoading } from "../../context";
 import type { RootStackParamList } from "../../types/navigationTypes";
 import HeaderIcons from "../HeaderIcons";
@@ -87,9 +86,9 @@ const RootScreen = () => {
     return authData && authData.dbRole !== DbRole.None;
   }, [authData]);
 
-  const { colors } = useTheme();
-  const headerBgColor = useColorModeValue(colors.white, colors.gray[800]);
-  const headerFgColor = useColorModeValue(colors.gray[800], colors.light[600]);
+  // const { colors } = useTheme();
+  const headerBgColor = useColorModeValue("white", "black");
+  const headerFgColor = useColorModeValue("black", "white");
 
   return (
     <>

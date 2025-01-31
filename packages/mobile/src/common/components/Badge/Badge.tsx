@@ -1,4 +1,3 @@
-import { Image, Text, View } from "native-base";
 import { StyleSheet } from "react-native";
 
 /**

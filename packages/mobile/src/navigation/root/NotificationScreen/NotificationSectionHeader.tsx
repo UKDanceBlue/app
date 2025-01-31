@@ -1,4 +1,3 @@
-import { Heading, View } from "native-base";
 import type { SectionListProps } from "react-native";
 
 import type { NotificationDeliveryFragment } from "@/common/fragments/NotificationScreenGQL";

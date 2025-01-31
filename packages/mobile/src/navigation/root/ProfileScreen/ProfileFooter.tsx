@@ -2,22 +2,17 @@ import { Ionicons } from "@expo/vector-icons";
 import { AuthSource } from "@ukdanceblue/common";
 import { nativeApplicationVersion, nativeBuildVersion } from "expo-application";
 import { openURL } from "expo-linking";
-import {
-  Button,
-  HStack,
-  Icon,
-  IconButton,
-  Text,
-  useColorMode,
-  View,
-} from "native-base";
+import { useColorScheme } from "nativewind";
 import { useState } from "react";
 import React from "react";
-import { TextInput } from "react-native";
+import { TextInput, View } from "react-native";
 
 import { useLogin, useLogOut } from "@/common/auth";
 import { useColorModeValue } from "@/common/customHooks";
 import { universalCatch } from "@/common/logging";
+import { Button, ButtonIcon } from "@/components/ui/button";
+import { HStack } from "@/components/ui/hstack";
+import { Text } from "@/components/ui/text";
 import type { FragmentOf } from "@/graphql/index";
 import { readFragment } from "@/graphql/index";
 
@@ -42,8 +37,8 @@ export const ProfileFooter = ({
   const [logOutLoading, logOut] = useLogOut();
   const loading = loginLoading || logOutLoading;
 
-  const { toggleColorMode } = useColorMode();
-  const colorModeIcon = useColorModeValue("moon", "md-sunny");
+  const { toggleColorScheme } = useColorScheme();
+  const colorModeIcon = useColorModeValue("moon", "sunny");
 
   const isAnonymous = authData?.authSource === AuthSource.Anonymous;
 
@@ -123,16 +118,15 @@ export const ProfileFooter = ({
       <HStack marginTop="2" alignItems="center">
         {__DEV__ && (
           <>
-            <IconButton
-              icon={
-                <Icon
+            <Button>
+              <ButtonIcon>
+                <Ionicons
                   size="6"
-                  as={Ionicons}
                   name={colorModeIcon}
-                  onPress={toggleColorMode}
+                  onPress={() => toggleColorScheme()}
                 />
-              }
-            />
+              </ButtonIcon>
+            </Button>
             {/* <Switch onToggle={toggleColorMode}/> */}
             <View width="3%" />
           </>

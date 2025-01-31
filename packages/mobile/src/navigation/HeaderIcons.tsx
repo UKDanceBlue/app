@@ -1,10 +1,10 @@
 import { FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/core";
-import { View } from "native-base";
 import {
   PixelRatio,
   TouchableOpacity,
   useWindowDimensions,
+  View,
 } from "react-native";
 
 const HeaderIcons = () => {

@@ -1,4 +1,3 @@
-import { Container, Flex, Text, View } from "native-base";
 import { memo, useMemo } from "react";
 import { useWindowDimensions } from "react-native";
 

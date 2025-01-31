@@ -1,6 +1,6 @@
 import { FontAwesome5 } from "@expo/vector-icons";
 import { MembershipPositionType } from "@ukdanceblue/common";
-import { Center, Text } from "native-base";
+
 import { useWindowDimensions } from "react-native";
 
 import type { StandingType } from "@/common-types/StandingType";

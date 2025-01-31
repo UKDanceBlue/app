@@ -3,20 +3,6 @@ import { intervalFromSomething } from "@ukdanceblue/common";
 import { setStringAsync } from "expo-clipboard";
 import type { Interval } from "luxon";
 import { DateTime } from "luxon";
-import {
-  Badge,
-  Box,
-  Button,
-  Center,
-  Heading,
-  Image,
-  Pressable,
-  ScrollView,
-  Text,
-  useTheme,
-  VStack,
-  ZStack,
-} from "native-base";
 import { useMemo } from "react";
 import { ActivityIndicator, useWindowDimensions } from "react-native";
 import openMaps from "react-native-open-maps";
