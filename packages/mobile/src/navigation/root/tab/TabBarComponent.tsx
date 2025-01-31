@@ -221,7 +221,7 @@ function TabBarComponent({
 
   return (
     <Box
-      className="absolute bottom-0 w-screen"
+      className="w-screen"
       style={{
         height: tabBarHeight,
         width: screenWidth,
