@@ -61,7 +61,8 @@
     "SERVE_PATH": "/workspaces/${localWorkspaceFolderBasename}/local-uploads",
     "UPLOAD_PATH": "/workspaces/${localWorkspaceFolderBasename}/local-uploads",
     "MAX_FILE_SIZE": "200",
-    "LOG_DIR": "/workspaces/${localWorkspaceFolderBasename}/packages/server/logs"
+    "LOG_DIR": "/workspaces/${localWorkspaceFolderBasename}/packages/server/logs",
+    "OTEL_RESOURCE_ATTRIBUTES": "deployment.environment.name=local"
   },
 
   "customizations": {

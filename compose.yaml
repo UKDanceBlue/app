@@ -41,6 +41,7 @@ services:
       SUPER_ADMIN_LINKBLUE: ${SUPER_ADMIN_LINKBLUE}
       INSTAGRAM_API_KEY: ${INSTAGRAM_API_KEY}
       OTEL_EXPORTER_OTLP_ENDPOINT: http://signoz-otel-collector:4318/v1/traces
+      OTEL_RESOURCE_ATTRIBUTES: "deployment.environment.name=${HOST_PREFIX:-}"
     secrets:
       - cookie_secret
       - jwt_secret
