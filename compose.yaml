@@ -26,6 +26,7 @@ services:
           - ${HOST_PREFIX:-}-server
       monitoring:
       database:
+      signoz:
     depends_on:
       - postgres
     environment:
@@ -39,6 +40,7 @@ services:
       LOGGING_LEVEL: ${LOGGING_LEVEL:-info}
       SUPER_ADMIN_LINKBLUE: ${SUPER_ADMIN_LINKBLUE}
       INSTAGRAM_API_KEY: ${INSTAGRAM_API_KEY}
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://signoz-otel-collector:4318/v1/traces
     secrets:
       - cookie_secret
       - jwt_secret
@@ -60,6 +62,9 @@ networks:
   monitoring:
     external: true
     name: monitoring
+  signoz:
+    external: true
+    name: signoz-net
 
 volumes:
   content:

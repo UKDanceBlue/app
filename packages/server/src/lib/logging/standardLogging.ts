@@ -1,4 +1,5 @@
 import { Container } from "@freshgum/typedi";
+import { OpenTelemetryTransportV3 } from "@opentelemetry/winston-transport";
 import * as Sentry from "@sentry/node";
 import { debugStringify } from "@ukdanceblue/common";
 import { ExtendedError } from "@ukdanceblue/common/error";
@@ -93,7 +94,11 @@ export const logger = createLogger({
     return Container.getOrNull(loggingLevelToken) ?? "debug";
   },
   levels: SyslogLevels,
-  transports: [combinedLogTransport, consoleTransport],
+  transports: [
+    combinedLogTransport,
+    consoleTransport,
+    new OpenTelemetryTransportV3({}),
+  ],
   exitOnError: false,
 }) as StandardLogger;
 

@@ -1,9 +1,12 @@
 import "reflect-metadata";
 
-import { Container } from "@freshgum/typedi";
+await import("./instrument.js");
 
 import type { EntryPoint } from "./entry/EntryPoint.js";
-import { DotEnvEnvironmentService } from "./entry/environment/DotEnvEnvironmentService.js";
+const { Container } = await import("@freshgum/typedi");
+const { DotEnvEnvironmentService } = await import(
+  "./entry/environment/DotEnvEnvironmentService.js"
+);
 
 // No top level imports that cause side effects should be used in this file
 // We want to control the order of execution

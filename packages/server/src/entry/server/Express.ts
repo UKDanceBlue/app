@@ -90,12 +90,14 @@ export class ExpressModule {
     const { default: uploadRouter } = await import(
       "#routes/api/upload/index.js"
     );
+    const { default: testRouter } = await import("#routes/api/test/index.js");
 
     Container.get(authApiRouter).mount(apiRouter);
     Container.get(eventsApiRouter).mount(apiRouter);
     Container.get(healthCheckRouter).mount(apiRouter);
     Container.get(fileRouter).mount(apiRouter);
     Container.get(uploadRouter).mount(apiRouter);
+    Container.get(testRouter).mount(apiRouter);
 
     this.app.use("/api", apiRouter);
   }
